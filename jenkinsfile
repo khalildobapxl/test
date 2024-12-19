@@ -1,6 +1,9 @@
 pipeline {
     agent {
-    docker { image 'mcr.microsoft.com/playwright:v1.49.1-jammy' }
+    docker { 
+        image 'mcr.microsoft.com/playwright:v1.49.1-jammy'
+        args '-u root:root'
+        }
     }
 
     stages {
@@ -15,9 +18,17 @@ pipeline {
             }
         }
 
+        stage('Debug') {
+            steps {
+                sh 'ls -la'
+                sh 'ls -la playwright'
+            }
+        }
+
+
         stage('Install dependencies') {
             steps {
-                sh 'cd playwright && npm install'
+                sh 'cd playwright && npm install --verbose --no-fund --no-audit'
                 sh 'cd playwright && npx playwright install'
             }
         }
