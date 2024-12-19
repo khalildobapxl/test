@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 // Test 1: Check if a button with text "add" exists
 test('AppHasAddButton', async ({ page }) => {
-  await page.goto('http://35.175.143.225:80'); 
+  await page.goto('http://44.193.12.84:80'); 
 
   // Locate the button with text "add"
   const addButton = await page.locator('button', { hasText: 'add' });
@@ -11,7 +11,7 @@ test('AppHasAddButton', async ({ page }) => {
 
 // Test 2: Check subtraction functionality
 test('AppCanSubtract', async ({ page }) => {
-  await page.goto('http://35.175.143.225:80');
+  await page.goto('http://44.193.12.84:80');
 
   // Simulate entering numbers and performing subtraction
   await page.fill('input[name="number1"]', '7'); // Replace selector if needed
