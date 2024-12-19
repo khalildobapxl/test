@@ -4,6 +4,11 @@ pipeline {
     }
 
     stages {
+        stage('clean workpalce') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Fetch code') {
             steps {
                 checkout scm
