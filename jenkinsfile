@@ -1,18 +1,18 @@
 pipeline {
     agent {
-    docker { 
-        image 'mcr.microsoft.com/playwright:v1.49.1-jammy'
-        args '-u root:root'
+        docker { 
+            image 'mcr.microsoft.com/playwright:v1.49.1-jammy'
+            args '-u root:root'
         }
     }
 
     stages {
-        stage('clean workpalce') {
+        stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
         }
-        stage('Fetch code') {
+        stage('Fetch Code') {
             steps {
                 checkout scm
             }
@@ -25,15 +25,14 @@ pipeline {
             }
         }
 
-
-        stage('Install dependencies') {
+        stage('Install Dependencies') {
             steps {
                 sh 'cd playwright && npm install --verbose --no-fund --no-audit'
                 sh 'cd playwright && npx playwright install'
             }
         }
 
-        stage('Run e2e test') {
+        stage('Run E2E Test') {
             steps {
                 sh 'cd playwright && npx playwright test --reporter=junit --output=./test-results/e2e'
             }
@@ -44,7 +43,7 @@ pipeline {
             }
         }
 
-        stage('Run integratie test') {
+        stage('Run Integration Test') {
             steps {
                 sh 'newman run api-testcollection-creators.postman_collection.json -r junit --reporter-junit-export ./test-results/api/junitResults.xml'
             }
@@ -55,10 +54,16 @@ pipeline {
             }
         }
 
-        stage('Archive artifact') {
+        stage('Archive Artifact') {
             steps {
                 archiveArtifacts artifacts: '**/test-results/**/*.xml', fingerprint: true
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
