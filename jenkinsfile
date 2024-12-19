@@ -1,0 +1,48 @@
+pipeline {
+    agent {
+    docker { image 'mcr.microsoft.com/playwright:v1.49.1-jammy' }
+    }
+
+    stages {
+        stage('Fetch code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install dependencies') {
+            steps {
+                sh 'cd playwright && npm install'
+                sh 'cd playwright && npx playwright install'
+            }
+        }
+
+        stage('Run e2e test') {
+            steps {
+                sh 'cd playwright && npx playwright test --reporter=junit --output=./test-results/e2e'
+            }
+            post {
+                always {
+                    junit 'playwright/test-results/e2e/*.xml'
+                }
+            }
+        }
+
+        stage('Run integratie test') {
+            steps {
+                sh 'newman run api-testcollection-creators.postman_collection.json -r junit --reporter-junit-export ./test-results/api/junitResults.xml'
+            }
+            post {
+                always {
+                    junit 'test-results/api/junitResults.xml'
+                }
+            }
+        }
+
+        stage('Archive artifact') {
+            steps {
+                archiveArtifacts artifacts: '**/test-results/**/*.xml', fingerprint: true
+            }
+        }
+    }
+}
