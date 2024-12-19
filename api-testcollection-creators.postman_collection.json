@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "eac25e9a-d656-4475-af31-c2665a04b020",
+		"name": "api-testcollection-creators",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38530428"
+	},
+	"item": [
+		{
+			"name": "Get persons",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Request should have right key in header to get response\", () => {\r",
+							"    pm.request.to.be.header(\"key\", \"2TINDEVOPS\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should be okay to process\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should contain data from Rik Lenaerts\",() => {\r",
+							"    const response = pm.response.json();\r",
+							"    const found = response.some(person => person.name === \"Rik Lenaerts\");\r",
+							"    pm.expect(found).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should contain data from Kylian Creemers\",() => {\r",
+							"    const response = pm.response.json();\r",
+							"    const found = response.some(person => person.name === \"Kylian Creemers\");\r",
+							"    pm.expect(found).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should contain data from Lieve Hindriks\",() => {\r",
+							"    const response = pm.response.json();\r",
+							"    const found = response.some(person => person.name === \"Lieve Hindriks\");\r",
+							"    pm.expect(found).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should contain data from Khalil Doba\",() => {\r",
+							"     const response = pm.response.json();\r",
+							"    const found = response.some(person => person.name === \"Khalil Doba\");\r",
+							"    pm.expect(found).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "key",
+						"value": "2TINDEVOPS",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://devops.d-ries.be/api/students",
+					"protocol": "https",
+					"host": [
+						"devops",
+						"d-ries",
+						"be"
+					],
+					"path": [
+						"api",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post persons",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Request should have right key in header to get response\", () => {\r",
+							"    pm.request.to.be.header(\"key\", \"2TINDEVOPS\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should be okay so that data is added to database\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.not.be.error;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "2TINDEVOPS",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rik Lenaerts\",\r\n  \"age\": 22,\r\n  \"group\": \"creators\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://devops.d-ries.be/api/students",
+					"protocol": "https",
+					"host": [
+						"devops",
+						"d-ries",
+						"be"
+					],
+					"path": [
+						"api",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get person",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
