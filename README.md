@@ -2,7 +2,7 @@
 # Integratieopdracht DevOps
 `voorzie badge hier (zie opgave)`
 
-[![<groepsnaam>-OpsDev-CI](https://github.com/khalildobapxl/test/actions/workflows/creators-OpsDev-CI.yml/badge.svg)](https://github.com/khalildobapxl/test/actions/workflows/creators-OpsDev-CI.yml)
+[![creators-OpsDev-CI](https://github.com/khalildobapxl/test/actions/workflows/creators-OpsDev-CI.yml/badge.svg)](https://github.com/khalildobapxl/test/actions/workflows/creators-OpsDev-CI.yml)
 
 
 ## Inleiding

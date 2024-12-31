@@ -19,13 +19,11 @@ jobs:
         with:
           node-version: '21'
 
+      - name: Install dependencies
+        run: npm install 
 
       - name: Run Unit Tests
         run: npm test
-
-      - name: List workspace
-        run: ls -la
-
 
       - name: Archive test results
         uses: actions/upload-artifact@v3
