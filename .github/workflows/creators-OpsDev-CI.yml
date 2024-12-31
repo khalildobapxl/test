@@ -1,4 +1,4 @@
-name: <groepsnaam>-OpsDev-CI
+name: creators-OpsDev-CI
 
 on:
   push:
