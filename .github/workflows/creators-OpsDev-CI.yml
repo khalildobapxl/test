@@ -29,5 +29,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: junit-report
-          path: test-results/junit-results.xml
+          path: ./junit-results.xml
 
