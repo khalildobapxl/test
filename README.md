@@ -2,6 +2,9 @@
 # Integratieopdracht DevOps
 `voorzie badge hier (zie opgave)`
 
+[![<groepsnaam>-OpsDev-CI](https://github.com/khalildobapxl/test/actions/workflows/creators-OpsDev-CI.yml/badge.svg)](https://github.com/khalildobapxl/test/actions/workflows/creators-OpsDev-CI.yml)
+
+
 ## Inleiding
 Het bedrijf OpsDev heeft met argusogen de lessen Devops op 2TIN meegevolgd en is zelf aan de slag gegaan aan een eigen versie van de calculator app die we gebruikt hebben tijdens de lessen. Je zou kunnen stellen dat er enkele gelijkenissen zijn tussen de app gebruikt tijdens de les en die van het bedrijf. Naast het ‘op een correcte manier kopiëren van applicaties’ is het bedrijf OpsDev ook vies van Jenkins en (lokaal gehoste) virtuele machines.
 
