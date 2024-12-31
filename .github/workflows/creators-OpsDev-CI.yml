@@ -19,8 +19,6 @@ jobs:
         with:
           node-version: '21'
 
-      - name: Install dependencies
-        run: npm insta
 
       - name: Run Unit Tests
         run: npm test
