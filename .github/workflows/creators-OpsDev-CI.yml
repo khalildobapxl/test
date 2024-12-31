@@ -28,6 +28,6 @@ jobs:
       - name: Archive test results
         uses: actions/upload-artifact@v3
         with:
-          name: test-results
-          path: coverage
+          name: junit-report
+          path: test-results/junit-results.xml
 
